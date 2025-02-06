@@ -12,8 +12,8 @@ Please describe the changes you made, why they are necessary, and any relevant c
 - [ ] Test Update
 - [ ] Other (please specify)
 
-## How to Test
-Provide steps to test your changes (Remove this section if not necessary):
+## How to Test (if applicable)
+Provide steps to test your changes:
 1. Step one
 2. Step two
 3. Step three
