@@ -6,11 +6,14 @@ import { useEffect, type ReactNode } from "react"
 import { Dumbbell } from "lucide-react"
 
 export function AuthCheck({ children }: { children: ReactNode }) {
-  const { user, isLoading } = useAuth()
+  const { user, isLoading, signOut } = useAuth()
   const router = useRouter()
 
   useEffect(() => {
-    if (!isLoading && !user) {
+    const expirationTime = localStorage.getItem('JWTexpiry') ?? '';
+
+    if (!isLoading && (!user || !expirationTime || Number(expirationTime) < new Date().getTime())) {
+      signOut()
       router.push("/signin")
     }
   }, [user, isLoading, router])

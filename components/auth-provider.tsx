@@ -74,6 +74,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       setUser(user)
       localStorage.setItem("JWT", result.token);
+      localStorage.setItem("JWTexpiry", new Date().getTime() + result.expiration);
       localStorage.setItem("gainz-user", JSON.stringify(user));
       setIsLoading(false)
       return true
@@ -113,6 +114,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signOut = () => {
     setUser(null)
     localStorage.removeItem("JWT")
+    localStorage.removeItem("gainz-user")
   }
 
   return <AuthContext.Provider value={{ user, isLoading, signIn, signUp, signOut }}>{children}</AuthContext.Provider>
